@@ -1,1 +1,17 @@
-<p>repo-card works!</p>
+<div class="repo-card">
+  <img [src]="repo.avatarUrl" alt="Owner Avatar" class="avatar" />
+
+  <div class="content">
+    <h3 class="repo-name">{{ repo.name }}</h3>
+    <p class="description">{{ repo.description || 'No description provided.' }}</p>
+
+    <div class="meta">
+      <span>Stars: {{ repo.stars }}</span>
+      <span>{{ repo.issues > 0 ? 'Issues:' + repo.issues : 'No issues' }}</span>
+    </div>
+
+    <p class="footer">
+      Submitted {{ repo.pushedAt}} by <strong>{{ repo.ownerLogin }}</strong>
+    </p>
+  </div>
+</div>
