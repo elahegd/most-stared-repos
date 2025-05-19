@@ -1,2 +1,13 @@
-<p>repo-list works!</p>
-<app-repo-card></app-repo-card>
+<div class="container repo-list">
+    <ng-container *ngIf="!error; else errorTemplate">
+        <app-repo-card *ngFor="let repo of repos" [repo]="repo" />
+        <p *ngIf="isLoading" class="loading">Loading...</p>
+    </ng-container>
+    
+    <ng-template #errorTemplate>
+        <div class="error-box">
+            <p>{{ error }}</p>
+            <button (click)="retry()">Retry</button>
+        </div>
+    </ng-template>
+</div>  
