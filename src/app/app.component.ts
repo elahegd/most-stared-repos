@@ -10,5 +10,5 @@ import { RepoListComponent } from './pages/repo-list/repo-list.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'most-stared-repos';
+  title = 'GitHub Repo Explorer';
 }
