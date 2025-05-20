@@ -31,6 +31,7 @@ export class RepoListComponent {
       this.repos = [...this.repos, ...data];
       this.page++;
       this.isLoading = false;
+      this.error = null;
     },
     error => {
       if (error instanceof Error) {
@@ -44,5 +45,9 @@ export class RepoListComponent {
 
   public retry() {
     this.loadRepos();
+  }
+
+  public get pageNumber(): number {
+    return this.page;
   }
 }
