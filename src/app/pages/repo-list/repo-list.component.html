@@ -1,4 +1,9 @@
-<div class="container repo-list">
+<div class="container repo-list"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="200"
+    (scrolled)="loadRepos()"
+>
     <ng-container *ngIf="!error; else errorTemplate">
         <app-repo-card *ngFor="let repo of repos" [repo]="repo" />
         <p *ngIf="isLoading" class="loading">Loading...</p>
