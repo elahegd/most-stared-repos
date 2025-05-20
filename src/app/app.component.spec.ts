@@ -1,29 +1,34 @@
-// import { TestBed } from '@angular/core/testing';
-// import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-// describe('AppComponent', () => {
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [AppComponent],
-//     }).compileComponents();
-//   });
+import { RepoListComponent } from './pages/repo-list/repo-list.component';
 
-//   it('should create the app', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-//     expect(app).toBeTruthy();
-//   });
+describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
 
-//   it(`should have the 'most-stared-repos' title`, () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-//     expect(app.title).toEqual('most-stared-repos');
-//   });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent, RepoListComponent, HttpClientTestingModule],
+    }).compileComponents();
 
-//   it('should render title', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     fixture.detectChanges();
-//     const compiled = fixture.nativeElement as HTMLElement;
-//     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, most-stared-repos');
-//   });
-// });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it(`should have title 'GitHub Repo Explorer'`, () => {
+    expect(component.title).toBe('GitHub Repo Explorer');
+  });
+
+  it('should render RepoListComponent', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const repoList = compiled.querySelector('app-repo-list');
+    expect(repoList).not.toBeNull();
+  });
+});
