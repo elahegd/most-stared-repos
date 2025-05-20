@@ -6,12 +6,12 @@
       <p class="description">{{ repo.description || 'No description provided.' }}</p>
   
       <div class="meta">
-        <span>Stars: {{ repo.stars }}</span>
-        <span>{{ repo.issues > 0 ? 'Issues:' + repo.issues : 'No issues' }}</span>
+        <span class="repo-stars">Stars: {{ repo.stars }}</span>
+        <span class="repo-issues">{{ repo.issues > 0 ? 'Issues:' + repo.issues : 'No issues' }}</span>
       </div>
   
       <p class="footer">
-        Submitted {{ repo.pushedAt | DaysAgo }} by <strong>{{ repo.ownerLogin }}</strong>
+        Submitted <span class="repo-pushed">{{ repo.pushedAt | DaysAgo }}</span> by <strong class="repo-owner">{{ repo.ownerLogin }}</strong>
       </p>
     </div>
 </div>
