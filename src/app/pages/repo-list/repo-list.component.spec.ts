@@ -53,7 +53,7 @@ describe('RepoListComponent', () => {
 
   it('should load repos on init', () => {
     githubServiceSpy.getTrendingRepos.and.returnValue(of(mockRepos));
-    fixture.detectChanges(); // triggers ngOnInit
+    fixture.detectChanges();
     expect(component.repos.length).toBe(2);
     expect(component.pageNumber).toBe(2);
   });
@@ -117,4 +117,23 @@ describe('RepoListComponent', () => {
     expect(component.repos.length).toBe(4); 
     expect(component.pageNumber).toBe(3);
   });
+
+  it('should open the modal with selected repo', () => {
+    const repo = mockRepos[0];
+    component.openModal(repo);
+    expect(component.selectedRepo).toEqual(repo);
+  });
+
+  it('should close the modal', () => {
+    component.selectedRepo = mockRepos[0];
+    component.closeModal();
+    expect(component.selectedRepo).toBeNull();
+  });
+
+  it('should store rating when handleRated is called', () => {
+    const repo = mockRepos[0];
+    component.handleRated(repo.name, 4);
+    expect(component.ratings[repo.name]).toBe(4);
+  });
+  
 });
