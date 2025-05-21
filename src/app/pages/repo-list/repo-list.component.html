@@ -1,18 +1,15 @@
-<div class="container repo-list"
-    infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="200"
-    (scrolled)="loadRepos()"
->
+<div class="container repo-list" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="200"
+    (scrolled)="loadRepos()">
     <ng-container *ngIf="!error; else errorTemplate">
-        <app-repo-card *ngFor="let repo of repos" [repo]="repo" />
+        <app-repo-card *ngFor="let repo of repos" [repo]="repo" (nameClicked)="openModal(repo)" [userRating]="ratings[repo.name]" />
         <p *ngIf="isLoading" class="loading">Loading...</p>
+        <app-repo-modal *ngIf="selectedRepo" [repo]="selectedRepo" (close)="closeModal()" (rated)="handleRated(selectedRepo!.name, $event)" />
     </ng-container>
-    
+
     <ng-template #errorTemplate>
         <div class="error-box">
             <p>{{ error }}</p>
             <button (click)="retry()">Retry</button>
         </div>
     </ng-template>
-</div>  
+</div>
