@@ -63,4 +63,29 @@ describe('RepoCardComponent', () => {
     const timeEl = fixture.debugElement.query(By.css('.repo-pushed'));
     expect(timeEl.nativeElement.textContent).toContain('5 days ago');
   });
+
+  it('should emit nameClicked when repo name is clicked', () => {
+    spyOn(component.nameClicked, 'emit');
+
+    const nameEl = fixture.debugElement.query(By.css('.repo-name'));
+    nameEl.triggerEventHandler('click', null);
+    
+    expect(component.nameClicked.emit).toHaveBeenCalled();
+  });
+
+  it('should display user rating if provided', () => {
+    component.userRating = 4;
+    fixture.detectChanges();
+
+    const ratingEl = fixture.debugElement.query(By.css('.user-rating'));
+    expect(ratingEl.nativeElement.textContent).toContain('4');
+  });
+
+  it('should not render user rating if not provided', () => {
+    component.userRating = undefined;
+    fixture.detectChanges();
+
+    const ratingEl = fixture.debugElement.query(By.css('.user-rating'));
+    expect(ratingEl).toBeFalsy();
+  });
 });
