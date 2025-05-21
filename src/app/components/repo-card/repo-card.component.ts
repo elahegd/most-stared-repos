@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SimplifiedRepo } from '../../services/github.service';
 import { DaysAgoPipe } from '../../pipes/days-ago.pipe';
@@ -12,4 +12,6 @@ import { DaysAgoPipe } from '../../pipes/days-ago.pipe';
 })
 export class RepoCardComponent {
   @Input() repo!: SimplifiedRepo;
+  @Input() userRating?: number;
+  @Output() nameClicked = new EventEmitter<void>();
 }
